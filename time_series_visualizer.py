@@ -30,15 +30,12 @@ def draw_bar_plot():
     df_bar = df.copy()
     df_bar['month'] = df_bar.index.month
     df_bar['year'] = df_bar.index.year
-
     monthly_avg = df_bar.groupby(['year', 'month'])['value'].mean().reset_index()
-    # Draw bar plot
     monthly_avg_pivot = monthly_avg.pivot(index='year', columns='month', values='value')
 
-    # Dessiner le barplot
+    # Draw bar plot
     plt.figure(figsize=(12, 6))
     monthly_avg_pivot.plot(kind='bar', stacked=False, color=sns.color_palette(), width=0.8)
-
     plt.title('Average Page Views per Month by Year')
     plt.xlabel('Years')
     plt.ylabel('Average Page Views')
